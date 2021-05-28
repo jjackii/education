@@ -32,7 +32,7 @@ def c_info():
     for data in datas:
         for i in data:
             info = {           
-                'createDt' : ''.join(i['createDt'].split()[0].split('-')),
+                'createDt' : ''.join(i['createDt'].split()[0].split('-')), # 'stateDt': '20200801'
                 'decideCnt' : i['decideCnt'],
                 'clearCnt' : i['clearCnt'],
                 'careCnt' : i['careCnt'],
