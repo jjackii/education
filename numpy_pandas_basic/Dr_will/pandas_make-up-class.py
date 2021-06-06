@@ -112,5 +112,112 @@ pd.concat([df_1, df_2], verify_integrity=True)
 
 # Indexes have overlapping values: Index(['a'], dtype='object')
 # key값 중복
+# -
+
+adf = pd.DataFrame({'x1': ['A', 'B', 'C'], 'x2': [1, 2, 3]})
+adf
+
+bdf = pd.DataFrame({'x1': ['A', 'B', 'D'], 'x3': ['T', 'F', 'T']})
+bdf
+
+pd.merge(adf, bdf, how='left', on='x1') 
+# default : inner join
+# left join (ABC로 병합), on은 key 중심으로 병합
+
+pd.merge(adf, bdf, how='right', on='x1') 
+
+pd.merge(adf, bdf, how='inner', on='x1') 
+
+pd.merge(adf, bdf, how='outer', on='x1') 
+
+adf.x1
+
+bdf.x1
+
+adf.x1.isin(bdf.x1)
+
+adf[adf.x1.isin(bdf.x1)]
+
+adf[~adf.x1.isin(bdf.x1)] # ~을 제와하고 데이터 가져옴
+
+pd.merge(adf, bdf, how='outer', indicator=True) 
+
+pd.merge(adf, bdf, how='outer', indicator=True).query('_merge == "left_only"')
+
+pd.merge(adf, bdf, how='outer', indicator=True).query('_merge == "left_only"').drop(columns=['_merge'])
+
+
+
+# +
+# 데이터 집계활용
+# -
+
+import seaborn as sns
+
+df = sns.load_dataset('mpg')
+df.head(3)
+
+df.groupby(by='origin').size()
+
+df['origin'].value_counts()
+
+df_mpg = df.groupby(by='origin')
+df_mpg.min()
+
+df_mpg.mean()
+
+df.groupby(by='origin')['cylinders'].size()
+
+df.groupby(by='origin')['cylinders'].mean()
+
+df.groupby(by='origin')['cylinders'].median()
+
+df.groupby(['model_year', 'origin'])['cylinders'].mean()
+
+df_sh = pd.DataFrame(
+[[4, 7, 10],
+[5, 11, 8],
+[6, 9, 12]],
+index=[1, 2, 3],
+columns=['a', 'b', 'c'])
+df_sh
+
+# 아래 행 방향으로 하나씩 shift(이동)
+df_sh.shift(1)
+
+# 위 행 방향으로 하나씩 shift(이동)
+df_sh.shift(-1)
+
+# 특정 column을 이동
+df_sh['b'].shift(-1)
+
+df_sh['b'].shift(2)
+
+df['model_year']
+
+df.describe()
+
+# rank : 순위
+df['model_year'].rank(method='min')
+
+df['model_year'].rank(method='min').value_counts()
+
+df['model_year'].rank(method='max')
+
+df['model_year'].rank(pct=True) # percentage
+
+df['model_year'].rank(method='first').head()
+
+df_sh
+
+# Cumulative Sum 누적합
+df_sh.cumsum()
+
+df_sh.cummin()
+
+df_sh.cummax()
+
+# Cumulative Product 누적곱
+df_sh.cumprod()
 
 
