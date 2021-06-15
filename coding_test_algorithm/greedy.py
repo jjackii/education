@@ -1,4 +1,6 @@
-# ------ Q(1).
+## 이것이 코딩 테스트다 - Greedy
+
+# ------ sol(1). 거스름 돈
 n = 1260
 count = 0
 
@@ -12,7 +14,7 @@ print(count)
 
 
 
-## ------ Q(2).
+## ------ sol(2). 1이 될 때까지
 n, k = map(int, input().split())
 count=0
 
@@ -41,8 +43,12 @@ while True:
 
     if n < k:
         break
-
+    
+    # 더 나눌 수 o
+    # result(1을 빼는 계산 횟수) + 1
     result += 1 
+
+    # 나누어 떨어짐(위에서 1을 빼는 계산 count)
     n //= k 
 
 # 마지막으로 남은 수에 대해 1씩 빼기
