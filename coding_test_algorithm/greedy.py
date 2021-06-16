@@ -67,10 +67,10 @@ result = 0
 for i in range(len(n)):
     if i==0:
         result+=(n[0])
-    elif n[i] > 1: 
-        result*=n[i]
-    else:
+    elif n[i] <= 1 or result <= 1: 
         result+=n[i]
+    else:
+        result*=n[i]
         
 print(result) 
 # list에 '0'이 들어가면 X
@@ -91,5 +91,30 @@ for i in range(1, len(data)):
         result *= num
 
 print(result)
+
+
+
+## ------ sol(4). 모험가 길드
+n = int(input())
+data = list(map(int, input().split()))
+data.sort()
+
+# 총 그룹의 수 # group=[] 포함X->Count
+group = 0
+
+# 현재 그룹에 포함된 모험가의 수
+count = 0
+
+for i in data:
+    count+=1
+
+    # 현재 그룹에 포합된 모험가의 수가 현재의 공포도 이상이라면, 그룹 결성
+    if count >= i:
+        group += 1
+        count = 0 
+
+print(group)
+
+
 
 
