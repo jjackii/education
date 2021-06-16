@@ -55,3 +55,41 @@ while True:
 result += (n-1) 
 
 print(result)
+
+
+
+## ------ sol(3). 곱하기 혹은 더하기
+n = list(map(int, input().split()))
+# print(type(n))
+
+result = 0
+
+for i in range(len(n)):
+    if i==0:
+        result+=(n[0])
+    elif n[i] > 1: 
+        result*=n[i]
+    else:
+        result+=n[i]
+        
+print(result) 
+# list에 '0'이 들어가면 X
+
+
+
+## ------
+data = input()
+
+result = int(data[0])
+
+for i in range(1, len(data)):
+    num = int(data[i])
+
+    if num <= 1 or result <= 1:
+        result += num
+    else:
+        result *= num
+
+print(result)
+
+
