@@ -55,8 +55,45 @@ def recursive_function(i):
     if i == 5:
         return
     print(f'{i}번째 재귀함수에서 {i+1}번째 재귀함수를 호출합니다.')
-
     recursive_function(i+1)
+
     print(f'{i}번째 재귀함수를 종료합니다.')
 
 recursive_function(1)
+
+
+
+# 팩토리얼 구현 예제
+# n! = 1*2*3*...*(n-1)*n, 0! and 1! == 1
+
+# Iteration
+def factorial_iterative(n):
+    result = 1
+
+    # 1부터 n까지 차례대로 곱하기
+    for i in range(1, n+1):
+        result *= i
+    return result
+
+# Recursive
+def factorial_recursive(n):
+    # n이 1 이하인 경우 1을 반환
+    if n <= 1:
+        return 1
+    
+    # n! = n*(n-1)!
+    return n * factorial_recursive(n-1)
+
+print(f'반복적으로 구현: {factorial_iterative(5)}')
+print('재귀적으로 구현:', factorial_recursive(5))
+
+
+
+# 최대공약수 계산 (유클리드 호제법) 예제
+def gdc(a, b):
+    if a%b == 0:
+        return b
+    else:
+        return gdc(b, a%b)
+
+print(gdc(192, 162))
