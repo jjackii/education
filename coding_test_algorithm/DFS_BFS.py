@@ -97,3 +97,24 @@ def gdc(a, b):
         return gdc(b, a%b)
 
 print(gdc(192, 162))
+
+
+
+# 주유소
+n = int(input())
+dist = list(map(int, input().split())) # n-1
+cost = list(map(int, input().split()))
+
+result = 0
+idx = 0
+c = 1000000000
+
+while idx < n-1:
+
+    if cost[idx] < c:
+       c = cost[idx]
+
+    result += dist[idx] * c
+    idx += 1
+
+print(result)
