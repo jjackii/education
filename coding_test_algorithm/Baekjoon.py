@@ -61,16 +61,11 @@ print(q.pop())
 
 
 # No.1021
-## sol(1). ing
+## sol(1).
 from collections import deque
 
 n, m = map(int, input().split())
 idx = list(map(int, input().split()))
-
-n=10
-m=3
-idx=[2, 9, 5]
-
 q = deque()
 count=0
 
@@ -78,19 +73,15 @@ for i in range(1, n+1):
     q.append(i)
 
 for idx in idx:
-    e = q.index(idx) # 변경 후 9의 idx 반환
+    e = q.index(idx)
 
-    # print(f'{e}!!') # 2, 9(6), 5
-    # print(len(q)) # 10 9
-    # print(q)
-
-    if e >= len(q)//2:
-        e = len(q)-(e+1)
+    if e >= (len(q)-e):
+        e = len(q)-(e)
         q.rotate(e)
-        q.pop()
+        # q.pop()
     else: 
         q.rotate(-e)
-        q.popleft() 
-    
+    q.popleft() 
     count += e   
 print(count)
+# 조건1. 첫 번째 원소를 뽑아낸다
